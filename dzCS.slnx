@@ -1,6 +1,12 @@
 <Solution>
+  <Folder Name="/10.07 - Osnovi/">
+    <Project Path="10.07 - Osnovi/Primer.csproj" />
+  </Folder>
   <Folder Name="/10.14 - Primer/">
     <Project Path="10.14 - Primer/Primer.csproj" />
+  </Folder>
+  <Folder Name="/12.10 Massive methods/">
+    <Project Path="12.10 Massive methods/Primer.csproj" />
   </Folder>
   <Folder Name="/20.10/">
     <Project Path="20.10/Primer.csproj" />
