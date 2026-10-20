@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/10.14 - Primer/">
+    <Project Path="10.14 - Primer/Primer.csproj" />
+  </Folder>
+  <Folder Name="/20.10/">
+    <Project Path="20.10/Primer.csproj" />
+  </Folder>
+</Solution>
