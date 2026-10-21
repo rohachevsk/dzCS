@@ -17,4 +17,7 @@
   <Folder Name="/20.10/">
     <Project Path="20.10/Primer.csproj" />
   </Folder>
+  <Folder Name="/21.10(Classwork)/">
+    <Project Path="21.10(Classwork)/Primer.csproj" />
+  </Folder>
 </Solution>
