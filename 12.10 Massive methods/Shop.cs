@@ -1,97 +1,165 @@
-using System;
+﻿using System;
 
 public class Shop
 {
-    private string _name;
-    private string _address;
-    private string _profile;
-    private string _phone;
-    private string _email;
+    private string name = "";
+    private string address = "";
+    private string profile = "";
+    private string phone = "";
+    private string email = "";
+    private double area;
+
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public string Address
+    {
+        get { return address; }
+        set { address = value; }
+    }
+
+    public string Profile
+    {
+        get { return profile; }
+        set { profile = value; }
+    }
+
+    public string Phone
+    {
+        get { return phone; }
+        set { phone = value; }
+    }
+
+    public string Email
+    {
+        get { return email; }
+        set { email = value; }
+    }
+
+    public double Area
+    {
+        get { return area; }
+        set
+        {
+            if (value < 0)
+            {
+                area = 0;
+            }
+            else
+            {
+                area = value;
+            }
+        }
+    }
 
     public Shop()
     {
-        _name = "default";
-        _address = "default";
-        _profile = "default";
-        _phone = "default";
-        _email = "default";
+        Name = "default";
+        Address = "default";
+        Profile = "default";
+        Phone = "default";
+        Email = "default";
+        Area = 0;
+    }
+
+    public Shop(string name, string address, string profile, string phone, string email, double area)
+    {
+        Name = name;
+        Address = address;
+        Profile = profile;
+        Phone = phone;
+        Email = email;
+        Area = area;
     }
 
     public void Input()
     {
         Console.Write("Назва магазину: ");
-        SetName(Console.ReadLine() ?? string.Empty);
+        Name = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Адреса: ");
-        SetAddress(Console.ReadLine() ?? string.Empty);
+        Address = Console.ReadLine() ?? string.Empty;
 
-        Console.Write("Опис профілю магазину: ");
-        SetProfile(Console.ReadLine() ?? string.Empty);
+        Console.Write("Профіль магазину: ");
+        Profile = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Контактний телефон: ");
-        SetPhone(Console.ReadLine() ?? string.Empty);
+        Phone = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Email: ");
-        SetEmail(Console.ReadLine() ?? string.Empty);
+        Email = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Площа магазину (кв.м): ");
+        double.TryParse(Console.ReadLine(), out double inputArea);
+        Area = inputArea;
     }
 
     public void Print()
     {
         Console.WriteLine("--- Магазин ---");
-        Console.WriteLine($"Назва: {GetName()}");
-        Console.WriteLine($"Адреса: {GetAddress()}");
-        Console.WriteLine($"Профіль: {GetProfile()}");
-        Console.WriteLine($"Телефон: {GetPhone()}");
-        Console.WriteLine($"Email: {GetEmail()}");
+        Console.WriteLine("Назва: " + Name);
+        Console.WriteLine("Адреса: " + Address);
+        Console.WriteLine("Профіль: " + Profile);
+        Console.WriteLine("Телефон: " + Phone);
+        Console.WriteLine("Email: " + Email);
+        Console.WriteLine("Площа: " + Area + " кв.м");
     }
 
-    public string GetName()
+    public static Shop operator +(Shop shop, double size)
     {
-        return _name;
+        return new Shop(shop.Name, shop.Address, shop.Profile, shop.Phone, shop.Email, shop.Area + size);
     }
 
-    public void SetName(string name)
+    public static Shop operator -(Shop shop, double size)
     {
-        _name = name;
+        return new Shop(shop.Name, shop.Address, shop.Profile, shop.Phone, shop.Email, shop.Area - size);
     }
 
-    public string GetAddress()
+    public static bool operator ==(Shop first, Shop second)
     {
-        return _address;
+        if (ReferenceEquals(first, second))
+        {
+            return true;
+        }
+
+        if (first is null || second is null)
+        {
+            return false;
+        }
+
+        return first.Area == second.Area;
     }
 
-    public void SetAddress(string address)
+    public static bool operator !=(Shop first, Shop second)
     {
-        _address = address;
+        return !(first == second);
     }
 
-    public string GetProfile()
+    public static bool operator <(Shop first, Shop second)
     {
-        return _profile;
+        return first.Area < second.Area;
     }
 
-    public void SetProfile(string profile)
+    public static bool operator >(Shop first, Shop second)
     {
-        _profile = profile;
+        return first.Area > second.Area;
     }
 
-    public string GetPhone()
+    public override bool Equals(object? obj)
     {
-        return _phone;
+        if (!(obj is Shop other))
+        {
+            return false;
+        }
+
+        return Area == other.Area;
     }
 
-    public void SetPhone(string phone)
+    public override int GetHashCode()
     {
-        _phone = phone;
-    }
-
-    public string GetEmail()
-    {
-        return _email;
-    }
-
-    public void SetEmail(string email)
-    {
-        _email = email;
+        return Area.GetHashCode();
     }
 }

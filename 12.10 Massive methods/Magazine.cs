@@ -1,98 +1,166 @@
-using System;
+﻿using System;
 
 public class Magazine
 {
-    private string _name;
-    private int _year;
-    private string _description;
-    private string _phone;
-    private string _email;
+    private string name = "";
+    private int year;
+    private string description = "";
+    private string phone = "";
+    private string email = "";
+    private int workers;
+
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public int Year
+    {
+        get { return year; }
+        set { year = value; }
+    }
+
+    public string Description
+    {
+        get { return description; }
+        set { description = value; }
+    }
+
+    public string Phone
+    {
+        get { return phone; }
+        set { phone = value; }
+    }
+
+    public string Email
+    {
+        get { return email; }
+        set { email = value; }
+    }
+
+    public int Workers
+    {
+        get { return workers; }
+        set
+        {
+            if (value < 0)
+            {
+                workers = 0;
+            }
+            else
+            {
+                workers = value;
+            }
+        }
+    }
 
     public Magazine()
     {
-        _name = "default";
-        _year = 2000;
-        _description = "default";
-        _phone = "default";
-        _email = "default";
+        Name = "default";
+        Year = 2000;
+        Description = "default";
+        Phone = "default";
+        Email = "default";
+        Workers = 0;
+    }
+
+    public Magazine(string name, int year, string description, string phone, string email, int workers)
+    {
+        Name = name;
+        Year = year;
+        Description = description;
+        Phone = phone;
+        Email = email;
+        Workers = workers;
     }
 
     public void Input()
     {
         Console.Write("Назва журналу: ");
-        SetName(Console.ReadLine() ?? string.Empty);
+        Name = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Рік заснування: ");
-        int.TryParse(Console.ReadLine(), out int year);
-        SetYear(year);
+        int.TryParse(Console.ReadLine(), out int inputYear);
+        Year = inputYear;
 
         Console.Write("Опис журналу: ");
-        SetDescription(Console.ReadLine() ?? string.Empty);
+        Description = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Контактний телефон: ");
-        SetPhone(Console.ReadLine() ?? string.Empty);
+        Phone = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Email: ");
-        SetEmail(Console.ReadLine() ?? string.Empty);
+        Email = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Кількість працівників: ");
+        int.TryParse(Console.ReadLine(), out int inputWorkers);
+        Workers = inputWorkers;
     }
 
     public void Print()
     {
         Console.WriteLine("--- Журнал ---");
-        Console.WriteLine($"Назва: {GetName()}");
-        Console.WriteLine($"Рік заснування: {GetYear()}");
-        Console.WriteLine($"Опис: {GetDescription()}");
-        Console.WriteLine($"Телефон: {GetPhone()}");
-        Console.WriteLine($"Email: {GetEmail()}");
+        Console.WriteLine("Назва: " + Name);
+        Console.WriteLine("Рік заснування: " + Year);
+        Console.WriteLine("Опис: " + Description);
+        Console.WriteLine("Телефон: " + Phone);
+        Console.WriteLine("Email: " + Email);
+        Console.WriteLine("Кількість працівників: " + Workers);
     }
 
-    public string GetName()
+    public static Magazine operator +(Magazine magazine, int count)
     {
-        return _name;
+        return new Magazine(magazine.Name, magazine.Year, magazine.Description, magazine.Phone, magazine.Email, magazine.Workers + count);
     }
 
-    public void SetName(string name)
+    public static Magazine operator -(Magazine magazine, int count)
     {
-        _name = name;
+        return new Magazine(magazine.Name, magazine.Year, magazine.Description, magazine.Phone, magazine.Email, magazine.Workers - count);
     }
 
-    public int GetYear()
+    public static bool operator ==(Magazine first, Magazine second)
     {
-        return _year;
+        if (ReferenceEquals(first, second))
+        {
+            return true;
+        }
+
+        if (first is null || second is null)
+        {
+            return false;
+        }
+
+        return first.Workers == second.Workers;
     }
 
-    public void SetYear(int year)
+    public static bool operator !=(Magazine first, Magazine second)
     {
-        _year = year;
+        return !(first == second);
     }
 
-    public string GetDescription()
+    public static bool operator <(Magazine first, Magazine second)
     {
-        return _description;
+        return first.Workers < second.Workers;
     }
 
-    public void SetDescription(string description)
+    public static bool operator >(Magazine first, Magazine second)
     {
-        _description = description;
+        return first.Workers > second.Workers;
     }
 
-    public string GetPhone()
+    public override bool Equals(object? obj)
     {
-        return _phone;
+        if (!(obj is Magazine other))
+        {
+            return false;
+        }
+
+        return Workers == other.Workers;
     }
 
-    public void SetPhone(string phone)
+    public override int GetHashCode()
     {
-        _phone = phone;
-    }
-
-    public string GetEmail()
-    {
-        return _email;
-    }
-
-    public void SetEmail(string email)
-    {
-        _email = email;
+        return Workers.GetHashCode();
     }
 }
