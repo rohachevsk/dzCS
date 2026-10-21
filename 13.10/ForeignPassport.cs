@@ -1,28 +1,18 @@
 using System;
-using System.Collections.Generic;
 
 public class ForeignPassport
 {
     public const int MaxValidityYears = 10;
     public const int MaxPassportNumberLength = 8;
 
-    private static readonly HashSet<string> ValidCountryCodes;
+    private static readonly string[] ValidCountryCodes =
+    {
+        "UKR", "POL", "DEU", "FRA", "USA", "GBR", "CZE", "CAN"
+    };
+
     private static int _createdCount;
 
     private readonly Guid _id;
-
-    static ForeignPassport()
-    {
-        ValidCountryCodes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        {
-            "UKR", "POL", "DEU", "FRA", "USA", "GBR", "CZE", "CAN"
-        };
-
-        if (ValidCountryCodes.Count == 0)
-        {
-            throw new InvalidOperationException("Довідник кодів країн не ініціалізовано.");
-        }
-    }
 
     public ForeignPassport()
     {
@@ -92,7 +82,21 @@ public class ForeignPassport
 
     public static bool IsCountryCodeValid(string countryCode)
     {
-        return countryCode != null && ValidCountryCodes.Contains(countryCode.Trim());
+        if (countryCode == null)
+        {
+            return false;
+        }
+
+        string code = countryCode.Trim().ToUpperInvariant();
+        for (int i = 0; i < ValidCountryCodes.Length; i++)
+        {
+            if (ValidCountryCodes[i] == code)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static string ValidatePassportNumber(string passportNumber)
@@ -183,7 +187,7 @@ public class ForeignPassport
         }
 
         string code = countryCode.Trim().ToUpperInvariant();
-        if (!ValidCountryCodes.Contains(code))
+        if (!IsCountryCodeValid(code))
         {
             throw new ArgumentException("Неприпустимий код країни: " + countryCode, nameof(countryCode));
         }
