@@ -23,4 +23,12 @@
   <Folder Name="/21.10/">
     <Project Path="21.10/Primer.csproj" />
   </Folder>
+  <Folder Name="/26.10/">
+    <Project Path="26.10/Primer.csproj" />
+    <Project Path="26.10.Tests/Primer.Tests.csproj" />
+  </Folder>
+  <Folder Name="/26.10 Arrays Delegates/">
+    <Project Path="26.10 Arrays Delegates/Primer.csproj" />
+    <Project Path="26.10 Arrays Delegates.Tests/Primer.Tests.csproj" />
+  </Folder>
 </Solution>
