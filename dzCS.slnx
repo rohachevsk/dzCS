@@ -37,6 +37,5 @@
   </Folder>
   <Folder Name="/28.10 - WordCount/">
     <Project Path="28.10 - WordCount/Primer.csproj" />
-    <Project Path="28.10 - WordCount.Tests/Primer.Tests.csproj" />
   </Folder>
 </Solution>
