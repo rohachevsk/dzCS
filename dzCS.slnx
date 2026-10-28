@@ -31,4 +31,8 @@
     <Project Path="26.10 Arrays Delegates/Primer.csproj" />
     <Project Path="26.10 Arrays Delegates.Tests/Primer.Tests.csproj" />
   </Folder>
+  <Folder Name="/28.10 - Backpack/">
+    <Project Path="28.10 - Backpack/Primer.csproj" />
+    <Project Path="28.10 - Backpack.Tests/Primer.Tests.csproj" />
+  </Folder>
 </Solution>
