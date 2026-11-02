@@ -44,4 +44,7 @@
   <Folder Name="/28.10(Делегати, події, методи розширення)/">
     <Project Path="28.10(Делегати, події, методи розширення)/Primer.csproj" />
   </Folder>
+  <Folder Name="/02.11 - Boxing, Unboxing, collections/">
+    <Project Path="02.11 - Boxing, Unboxing, collections/Primer.csproj" />
+  </Folder>
 </Solution>
