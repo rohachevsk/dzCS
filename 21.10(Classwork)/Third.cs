@@ -5,7 +5,7 @@ class Third
         Console.Write("Введіть речення: ");
         string sentence = Console.ReadLine() ?? "";
 
-        string[] words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        string[] words = sentence.Split(' ');
 
         int maxLength = 0;
 

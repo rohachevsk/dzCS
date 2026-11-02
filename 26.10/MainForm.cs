@@ -1,7 +1,5 @@
 using System.IO;
 
-// Головне вікно: вводимо повідомлення і показуємо його різними способами
-// через делегат MessageHandler.
 public class MainForm : Form
 {
     private readonly TextBox messageBox = new TextBox();

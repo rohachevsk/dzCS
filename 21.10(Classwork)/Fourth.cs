@@ -8,7 +8,7 @@ class Fourth
         Console.Write("Введіть рядок для пошуку: ");
         string sub = Console.ReadLine() ?? "";
 
-        string[] words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        string[] words = sentence.Split(' ');
 
         string subLower = sub.ToLower();
         int count = 0;
@@ -21,12 +21,10 @@ class Fourth
                 count++;
             }
         }
-
         if (count == 0)
         {
             Console.WriteLine("Збігів немає");
         }
-
         Console.WriteLine("Натисніть Enter, щоб завершити...");
         Console.ReadLine();
     }

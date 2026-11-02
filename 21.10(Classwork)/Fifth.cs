@@ -8,7 +8,7 @@ class Fifth
         Console.Write("Введіть слово для пошуку: ");
         string word = Console.ReadLine() ?? "";
 
-        string[] words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        string[] words = sentence.Split(' ');
 
         string wordLower = word.ToLower();
         string indexes = "";
