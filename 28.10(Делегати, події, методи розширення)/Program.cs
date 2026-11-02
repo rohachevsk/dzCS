@@ -34,7 +34,6 @@ internal static class Program
         }
     }
 
-    // Завдання 1: код для тестування extension-методу IsValidBrackets
     private static void RunTask1()
     {
         Console.WriteLine("Перевірка методу розширення IsValidBrackets:");
@@ -42,12 +41,12 @@ internal static class Program
 
         (string? Input, bool Expected)[] testCases =
         {
-            ("{}[]", true),                               // приклади з умови
+            ("{}[]", true),
             ("(())", true),
             ("[{}]", true),
             ("[}", false),
             ("[[{]}]", false),
-            ("", true),                                   // додаткові випадки
+            ("", true),
             (null, true),
             ("(", false),
             (")(", false),
@@ -70,7 +69,6 @@ internal static class Program
         Console.WriteLine(own.IsValidBrackets() ? "Валідний рядок" : "Невалідний рядок");
     }
 
-    // Завдання 2: демонстрація подій кредитної картки
     private static void RunTask2()
     {
         CreditCard card = new CreditCard(
@@ -79,9 +77,8 @@ internal static class Program
             expiryDate: new DateTime(2029, 3, 31),
             pin: "1234",
             creditLimit: 1000,
-            alertSum: -500);                              // попередження, коли баланс досягне -500
+            alertSum: -500);
 
-        // підписки на події картки
         card.Deposited += (sender, e) =>
             Console.WriteLine($"  [ПОДІЯ] Поповнення: +{e.Amount}, баланс: {e.BalanceAfter}");
         card.Withdrawn += (sender, e) =>

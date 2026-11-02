@@ -1,6 +1,5 @@
 namespace Primer;
 
-/// <summary>Дані подій поповнення, витрати коштів та старту кредитних коштів.</summary>
 public class CardOperationEventArgs : EventArgs
 {
     public decimal Amount { get; }
@@ -13,7 +12,6 @@ public class CardOperationEventArgs : EventArgs
     }
 }
 
-/// <summary>Дані події досягнення заданої суми грошей.</summary>
 public class LimitReachedEventArgs : EventArgs
 {
     public decimal AlertSum { get; }
@@ -26,7 +24,6 @@ public class LimitReachedEventArgs : EventArgs
     }
 }
 
-/// <summary>Дані події зміни PIN.</summary>
 public class PinChangedEventArgs : EventArgs
 {
     public string OldPin { get; }
@@ -39,41 +36,23 @@ public class PinChangedEventArgs : EventArgs
     }
 }
 
-/// <summary>
-/// Завдання 2: кредитна картка з подіями про поповнення рахунку,
-/// витрату коштів, старт використання кредитних коштів,
-/// досягнення ліміту заданої суми грошей та зміну PIN.
-/// </summary>
 public class CreditCard
 {
     public string CardNumber { get; }
     public string Owner { get; }
     public DateTime ExpiryDate { get; }
     public decimal CreditLimit { get; }
-
-    /// <summary>Сума на рахунку. Від'ємне значення — використовуються кредитні кошти.</summary>
     public decimal Balance { get; private set; }
-
-    /// <summary>Задана сума, при досягненні якої спрацьовує подія LimitReached.</summary>
     public decimal AlertSum { get; }
 
     private string pin;
-    private bool creditStarted;   // щоб подія старту кредитних коштів спрацювала один раз
-    private bool limitNotified;   // щоб подія досягнення суми не повторювалась
+    private bool creditStarted;
+    private bool limitNotified;
 
-    /// <summary>Поповнення рахунку.</summary>
     public event EventHandler<CardOperationEventArgs>? Deposited;
-
-    /// <summary>Витрата коштів з рахунку.</summary>
     public event EventHandler<CardOperationEventArgs>? Withdrawn;
-
-    /// <summary>Старт використання кредитних коштів (баланс вперше став від'ємним).</summary>
     public event EventHandler<CardOperationEventArgs>? CreditStarted;
-
-    /// <summary>Досягнення ліміту заданої суми грошей (баланс опустився до AlertSum).</summary>
     public event EventHandler<LimitReachedEventArgs>? LimitReached;
-
-    /// <summary>Зміна PIN.</summary>
     public event EventHandler<PinChangedEventArgs>? PinChanged;
 
     public CreditCard(string cardNumber, string owner, DateTime expiryDate,
@@ -88,7 +67,6 @@ public class CreditCard
         Balance = startBalance;
     }
 
-    /// <summary>Поповнити рахунок на задану суму.</summary>
     public void Deposit(decimal amount)
     {
         if (amount <= 0)
@@ -100,10 +78,6 @@ public class CreditCard
         Deposited?.Invoke(this, new CardOperationEventArgs(amount, Balance));
     }
 
-    /// <summary>
-    /// Витратити кошти (перевіряється PIN). Можна використовувати власні та кредитні
-    /// кошти, але не більше кредитного ліміту. Повертає true, якщо операція пройшла.
-    /// </summary>
     public bool Withdraw(decimal amount, string pin)
     {
         if (amount <= 0)
@@ -113,12 +87,12 @@ public class CreditCard
 
         if (this.pin != pin)
         {
-            return false;                                  // неправильний PIN
+            return false;
         }
 
         if (Balance - amount < -CreditLimit)
         {
-            return false;                                  // вихід за кредитний ліміт
+            return false;
         }
 
         Balance -= amount;
@@ -126,20 +100,19 @@ public class CreditCard
 
         if (Balance < 0 && creditStarted == false)
         {
-            creditStarted = true;                          // уперше взяли кредитні кошти
+            creditStarted = true;
             CreditStarted?.Invoke(this, new CardOperationEventArgs(amount, Balance));
         }
 
         if (Balance <= AlertSum && limitNotified == false)
         {
-            limitNotified = true;                          // досягли заданої суми
+            limitNotified = true;
             LimitReached?.Invoke(this, new LimitReachedEventArgs(AlertSum, Balance));
         }
 
         return true;
     }
 
-    /// <summary>Змінити PIN. Повертає true, якщо старий PIN указано правильно.</summary>
     public bool ChangePin(string oldPin, string newPin)
     {
         if (this.pin != oldPin)
