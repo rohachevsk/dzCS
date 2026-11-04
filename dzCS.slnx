@@ -47,4 +47,7 @@
   <Folder Name="/02.11 - Boxing, Unboxing, collections/">
     <Project Path="02.11 - Boxing, Unboxing, collections/Primer.csproj" />
   </Folder>
+  <Folder Name="/04.11(Classwork)/">
+    <Project Path="04.11(Classwork)/Primer.csproj" />
+  </Folder>
 </Solution>
