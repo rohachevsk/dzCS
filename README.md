@@ -39,6 +39,7 @@
 | `02.11 - Boxing, Unboxing, collections` | Коллекции и наследование | «Океанариум»: `List<SeaItem>` с жителями-наследниками (`Dolphin`, `Shark`, `Octopus`, `SeaTurtle`) и виртуальным `GetInfo`; «Футбольная команда»: `List<Player>`, добавление и полный вывод |
 | `04.11(Classwork)` | Очереди (`Queue<T>`) | Эмуляция приёма пациентов в поликлинике |
 | `10.11(Classwork)` | Управление памятью и GC | Анализ памяти DataProcessor, демонстрация методов GC (GetGeneration, Collect, LOH, Finalizers) и эксперимент на 10 000 объектов |
+| `13.11(classwork)` | Работа с файлами и FileStream | Заполнение XML-шаблона данными через `FileStream`, `Seek()`, `ReadByte()` и вставку со сдвигом байтов |
 
 ## Быстрый старт
 

@@ -53,4 +53,7 @@
   <Folder Name="/10.11(Classwork)/">
     <Project Path="10.11(Classwork)/Primer.csproj" />
   </Folder>
+  <Folder Name="/13.11(classwork)/">
+    <Project Path="13.11(classwork)/Primer.csproj" />
+  </Folder>
 </Solution>
