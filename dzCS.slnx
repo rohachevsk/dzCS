@@ -47,13 +47,34 @@
   <Folder Name="/02.11 - Boxing, Unboxing, collections/">
     <Project Path="02.11 - Boxing, Unboxing, collections/Primer.csproj" />
   </Folder>
+  <Folder Name="/03.11/">
+    <Project Path="03.11/Primer.csproj" />
+  </Folder>
+  <Folder Name="/04.11/">
+    <Project Path="04.11/Primer.csproj" />
+  </Folder>
   <Folder Name="/04.11(Classwork)/">
     <Project Path="04.11(Classwork)/Primer.csproj" />
+  </Folder>
+  <Folder Name="/09.11/">
+    <Project Path="09.11/Primer.csproj" />
   </Folder>
   <Folder Name="/10.11(Classwork)/">
     <Project Path="10.11(Classwork)/Primer.csproj" />
   </Folder>
+  <Folder Name="/10.11/">
+    <Project Path="10.11/Primer.csproj" />
+  </Folder>
+  <Folder Name="/11.11/">
+    <Project Path="11.11/Primer.csproj" />
+  </Folder>
   <Folder Name="/13.11(classwork)/">
     <Project Path="13.11(classwork)/Primer.csproj" />
+  </Folder>
+  <Folder Name="/13.11/">
+    <Project Path="13.11/Primer.csproj" />
+  </Folder>
+  <Folder Name="/16.11/">
+    <Project Path="16.11/Primer.csproj" />
   </Folder>
 </Solution>
